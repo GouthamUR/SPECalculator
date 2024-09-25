@@ -1,0 +1,18 @@
+---
+        - name: Pull Docker Image of Calculator
+        hosts: all
+        vars:
+        ansible_python_interpreter: /usr/bin/python3
+        tasks:
+        - name: Pull image
+        docker_image:
+        name: gouthamur1/calculator:latest
+        source: pull
+
+        - name: Start docker service
+        service:
+        name: docker
+        state: started
+
+        - name: Running container
+        shell: docker run -it -d --name Calculator gouthamur1/calculator
