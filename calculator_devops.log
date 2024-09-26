@@ -1,0 +1,2 @@
+2024-09-26 15:43:41.965 [main] INFO  org.example.Main - Executing square root for:4.0
+2024-09-26 15:43:45.012 [main] INFO  org.example.Main - Computing x^n where x=3.0and n=4.0
