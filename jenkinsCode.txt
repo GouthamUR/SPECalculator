@@ -1,0 +1,53 @@
+pipeline{
+    environment{
+        DOCKERHUB_CRED = credentials("DockerHubCred")
+    }
+  agent any
+  stages{
+    stage('Stage 1: Git Clone'){
+      steps{
+        git branch: 'master',
+        url: 'https://github.com/GouthamUR/SPECalculator.git'
+      }
+    }
+    stage('Step 2: Maven Build'){
+        steps{
+            sh 'mvn clean install'
+        }
+    }
+    stage("Stage 3 : Build Docker Image"){
+        steps{
+            sh "docker build -t gouthamur1/calculator:latest ."
+        }
+    }
+    
+    stage("Stage 4 : Push Docker Image to Dockerhub"){
+        steps{
+            sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+            sh "docker push gouthamur1/calculator:latest"
+        }
+    }
+    // stage('Stage 5: Clean docker images'){
+    //     steps{
+    //         sh "docker container prune -f"
+    //         sh "docker image prune -a -f"
+    //     }
+    // }
+    stage('Step 6: Ansible Deployment') {
+        steps {
+            ansiblePlaybook(
+                becomeUser: null,
+                colorized: true,
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true,
+                installation: 'Ansible',
+                inventory: 'Deployment/inventory',
+                playbook: 'Deployment/deploy.yml',
+                sudoUser: null
+            )
+        }
+    }
+
+  }
+}
+
