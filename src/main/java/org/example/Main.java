@@ -52,7 +52,7 @@ public class Main {
     }
 
     private static void handleSquareRoot(Scanner scanner) {
-        System.out.print("Enter a single number: ");
+        System.out.print("Enter a number: ");
         double num = scanner.nextDouble();
         logger.info("Executing square root for: " + num);
         System.out.println("√" + num + " = " + sqrt(num));
