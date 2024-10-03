@@ -18,7 +18,7 @@
 #            shell: docker run -it -d --name Calculator gouthamur1/calculator
 ---
 - name: Pull Docker Image of Calculator
-  hosts: all
+  hosts: localhost
   vars:
           ansible_python_interpreter: /usr/bin/python3
   tasks:
