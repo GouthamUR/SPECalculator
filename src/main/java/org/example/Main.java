@@ -34,7 +34,7 @@ public class Main {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option! Please choose a valid operation.");
+                    System.out.println("Invalid option! Choose a valid operation.");
                     break;
             }
         }
