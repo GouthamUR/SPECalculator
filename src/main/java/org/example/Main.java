@@ -43,7 +43,7 @@ public class Main {
 
     private static void displayMenu() {
         System.out.println("\n--- Calculator ---");
-        System.out.println("1. Square Root (√x)");
+        System.out.println("1. Square Root of a number(√x)");
         System.out.println("2. Factorial (x!)");
         System.out.println("3. Natural Logarithm (ln(x))");
         System.out.println("4. Power (x^b)");
